@@ -16,7 +16,7 @@
     "biome:check": "biome check",
     "biome:fix": "pnpm biome:check --write",
     "biome:ci": "biome ci",
-    "turbo": "pnpm dlx turbo@2.0.9",
+    "turbo": "pnpm dlx turbo@2.5.0",
     "typegen": "react-router typegen",
     "type:check": "pnpm typegen && tsc",
     "test": "vitest run",
