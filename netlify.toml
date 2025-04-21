@@ -8,4 +8,5 @@
   publish = 'build/client/'
 
 [build.environment]
-  NODE_VERSION="20"
+  NODE_VERSION="22"
+  COREPACK_INTEGRITY_KEYS="0"
