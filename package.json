@@ -13,7 +13,7 @@
   },
   "scripts": {
     "dev": "react-router dev",
-    "build": "pnpm typegen && react-router build",
+    "build": "cross-env ROLLDOWN_OPTIONS_VALIDATION=loose pnpm typegen && cross-env ROLLDOWN_OPTIONS_VALIDATION=loose react-router build",
     "serve": "vite preview",
     "biome:check": "biome check",
     "biome:fix": "pnpm biome:check --write",
@@ -64,7 +64,7 @@
     "lint-staged": "^15.5.0",
     "rollup-plugin-visualizer": "^5.14.0",
     "typescript": "5.8.3",
-    "vite": "^6.2.5",
+    "vite": "npm:rolldown-vite@6.3.5",
     "vite-plugin-checker": "^0.9.1",
     "vite-plugin-pwa": "^1.0.0",
     "vite-tsconfig-paths": "^5.1.4",
