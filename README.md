@@ -34,6 +34,10 @@ pnpm dev
 
 - https://vercel.com/docs/frameworks/react-router#vercel-react-router-preset
 
+### Netlify
+
+- https://docs.netlify.com/frameworks/react-router/
+
 ## References
 
 - [vite](https://vitejs.dev)
