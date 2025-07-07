@@ -1,13 +1,25 @@
 {
-  "$schema": "https://biomejs.dev/schemas/1.9.1/schema.json",
-  "files": {
-    "include": ["src", "*.config.ts"],
-    "ignore": [".react-router", "*.d.ts"]
+  "$schema": "https://biomejs.dev/schemas/2.0.6/schema.json",
+  "vcs": {
+    "enabled": false,
+    "clientKind": "git",
+    "useIgnoreFile": false
   },
-  "organizeImports": {
-    "enabled": true
+  "files": {
+    "ignoreUnknown": false,
+    "includes": [
+      "src/**/*",
+      "!src/*.gen.ts",
+      "!turbo",
+      "!src/lib/components/ui/**/*",
+      "*.config.ts",
+      "!*.css",
+      "!.react-router",
+      "!*.d.ts"
+    ]
   },
   "formatter": {
+    "enabled": true,
     "indentStyle": "space"
   },
   "linter": {
@@ -29,9 +41,6 @@
         "noUnusedVariables": "error",
         "noUnusedFunctionParameters": "error",
         "useHookAtTopLevel": "error"
-      },
-      "nursery": {
-        "noDuplicateElseIf": "error"
       },
       "performance": {
         "noBarrelFile": "error",
@@ -56,8 +65,13 @@
         }
       },
       "suspicious": {
-        "noConsole": "error",
-        "noConsoleLog": "error",
+        "noDuplicateElseIf": "error",
+        "noConsole": {
+          "level": "error",
+          "options": {
+            "allow": ["error", "info"]
+          }
+        },
         "noEmptyBlockStatements": "error",
         "useAwait": "error"
       }
@@ -70,7 +84,7 @@
   },
   "overrides": [
     {
-      "include": ["src/lib/pages/**/*", "*.ts"],
+      "includes": ["src/lib/pages/**/index.tsx", "src/*.ts", "*.ts"],
       "linter": {
         "rules": {
           "style": {
@@ -79,5 +93,24 @@
         }
       }
     }
-  ]
+  ],
+  "assist": {
+    "enabled": true,
+    "actions": {
+      "source": {
+        "organizeImports": {
+          "level": "on",
+          "options": {
+            "groups": [
+              [":URL:", ":NODE:", ":PACKAGE:"],
+              ":BLANK_LINE:",
+              [":ALIAS:"],
+              ":BLANK_LINE:",
+              [":PATH:"]
+            ]
+          }
+        }
+      }
+    }
+  }
 }

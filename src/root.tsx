@@ -1,25 +1,22 @@
 import { HelmetProvider } from 'react-helmet-async';
 import {
+  isRouteErrorResponse,
   Links,
   Meta,
   Outlet,
   Scripts,
   ScrollRestoration,
-  isRouteErrorResponse,
 } from 'react-router';
 
 import { Provider } from '@/components/ui/provider';
 import { Layout as AppLayout } from '@/lib/layout';
+
 import type { Route } from './+types/root';
 
 // fonts
 import '@fontsource-variable/plus-jakarta-sans';
 
-export function Layout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <head>
@@ -43,7 +40,7 @@ export function Layout({
   );
 }
 
-// biome-ignore lint/style/noDefaultExport: <explanation>
+// biome-ignore lint/style/noDefaultExport: -
 export default function Root() {
   return <Outlet />;
 }

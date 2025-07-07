@@ -1,10 +1,8 @@
-import { Helmet } from 'react-helmet-async';
-
 const APP_NAME = 'vite-react-chakra-starter';
 
 export const Meta = () => {
   return (
-    <Helmet>
+    <>
       <title>Vite React Chakra Starter</title>
       <meta name="description" content="Vite React Chakra Starter Template" />
 
@@ -17,6 +15,6 @@ export const Meta = () => {
       <meta name="theme-color" content="#FFFFFF" />
 
       <link rel="shortcut icon" href="/favicon.svg" />
-    </Helmet>
+    </>
   );
 };

@@ -9,6 +9,8 @@ import { VitePWA } from 'vite-plugin-pwa';
 import tsconfigPaths from 'vite-tsconfig-paths';
 
 const pwaOptions: Partial<VitePWAOptions> = {
+  // TODO: enable if you want to enable PWA service worker
+  disable: true,
   registerType: 'autoUpdate',
   manifest: {
     short_name: 'vite-react-chakra-starter',
