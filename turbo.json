@@ -17,6 +17,10 @@
 			"dependsOn": ["type:check"],
 			"outputs": ["build/client/**", "public/**"],
 			"env": []
-		}
+		},
+		"test": {
+      "outputs": ["node_modules/.vite/vitest/**/results.json"],
+      "inputs": ["vitest.config.ts", "src/**"]
+    }
 	}
 }
