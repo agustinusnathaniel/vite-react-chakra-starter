@@ -30,21 +30,28 @@ const pwaOptions: Partial<VitePWAOptions> = {
 };
 
 // https://vitejs.dev/config/
-export default defineConfig({
-  plugins: [
-    reactRouter(),
-    checker({
-      typescript: true,
-      biome: true,
-    }),
-    tsconfigPaths(),
-    visualizer({ template: 'sunburst' }) as unknown as PluginOption,
-    VitePWA(pwaOptions),
-  ],
-  server: {
-    open: true,
-  },
-  ssr: {
-    noExternal: ['react-helmet-async'], // temporary
-  },
+export default defineConfig(({ mode }) => {
+  const isCheckDisabled = mode === 'production' || !!process.env.VITEST;
+  return {
+    plugins: [
+      reactRouter(),
+      ...(!isCheckDisabled
+        ? [
+            checker({
+              typescript: true,
+              biome: true,
+            }),
+          ]
+        : []),
+      tsconfigPaths(),
+      visualizer({ template: 'sunburst' }) as unknown as PluginOption,
+      VitePWA(pwaOptions),
+    ],
+    server: {
+      open: true,
+    },
+    ssr: {
+      noExternal: ['react-helmet-async'], // temporary
+    },
+  };
 });
