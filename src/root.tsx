@@ -1,4 +1,3 @@
-import { HelmetProvider } from 'react-helmet-async';
 import {
   isRouteErrorResponse,
   Links,
@@ -28,11 +27,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        <HelmetProvider>
-          <Provider>
-            <AppLayout>{children}</AppLayout>
-          </Provider>
-        </HelmetProvider>
+        <Provider>
+          <AppLayout>{children}</AppLayout>
+        </Provider>
         <ScrollRestoration />
         <Scripts />
       </body>

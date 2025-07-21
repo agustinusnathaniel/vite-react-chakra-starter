@@ -50,8 +50,5 @@ export default defineConfig(({ mode }) => {
     server: {
       open: true,
     },
-    ssr: {
-      noExternal: ['react-helmet-async'], // temporary
-    },
   };
 });
