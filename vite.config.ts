@@ -39,7 +39,6 @@ export default defineConfig(({ mode }) => {
         ? [
             checker({
               typescript: true,
-              biome: true,
             }),
           ]
         : []),
