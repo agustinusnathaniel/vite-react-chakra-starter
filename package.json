@@ -16,7 +16,7 @@
     "build": "pnpm typegen && react-router build",
     "generate-pwa-assets": "pwa-assets-generator",
     "serve": "vite preview",
-    "biome:check": "biome check",
+    "biome:check": "biome check --no-errors-on-unmatched --error-on-warnings",
     "biome:fix": "pnpm biome:check --write",
     "biome:ci": "biome ci",
     "turbo": "pnpm dlx turbo@2.5.6",
