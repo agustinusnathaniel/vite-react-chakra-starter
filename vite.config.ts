@@ -1,5 +1,5 @@
 /* eslint-disable import/no-extraneous-dependencies */
-import { reactRouter } from '@react-router/dev/vite';
+import { tanstackRouter } from '@tanstack/router-plugin/vite';
 import { visualizer } from 'rollup-plugin-visualizer';
 import type { PluginOption } from 'vite';
 import { defineConfig } from 'vite';
@@ -34,7 +34,7 @@ export default defineConfig(({ mode }) => {
   const isCheckDisabled = mode === 'production' || !!process.env.VITEST;
   return {
     plugins: [
-      reactRouter(),
+      tanstackRouter({ autoCodeSplitting: true }),
       ...(!isCheckDisabled
         ? [
             checker({
@@ -48,6 +48,7 @@ export default defineConfig(({ mode }) => {
       VitePWA(pwaOptions),
     ],
     server: {
+      port: 3000,
       open: true,
     },
   };

@@ -14,7 +14,7 @@
       "!turbo",
       "!src/lib/components/ui/**/*",
       "!*.css",
-      "!.react-router",
+      "!.tanstack",
       "!*.d.ts"
     ]
   },

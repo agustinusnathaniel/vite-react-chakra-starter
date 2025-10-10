@@ -1,7 +1,7 @@
 import { Box, Flex, Image, Link } from '@chakra-ui/react';
 import { AiFillGithub } from 'react-icons/ai';
 
-import { Button } from '@/components/ui/button';
+import { Button } from '@/lib/components/ui/button';
 
 const repoName = 'vite-react-chakra-starter';
 const repoLink = `https://github.com/agustinusnathaniel/${repoName}`;
