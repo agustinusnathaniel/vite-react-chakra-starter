@@ -52,6 +52,7 @@
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@commitlint/types": "^20.0.0",
+    "@tanstack/devtools-vite": "^0.3.10",
     "@tanstack/router-plugin": "^1.133.36",
     "@types/node": "^24.9.2",
     "@types/react": "19.2.2",
