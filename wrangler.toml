@@ -1,5 +1,0 @@
-pages_build_output_dir = "./build/client"
-
-[vars]
-  COREPACK_INTEGRITY_KEYS="0"
-  NODE_VERSION="20.14.0"
