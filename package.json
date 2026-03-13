@@ -9,28 +9,32 @@
   },
   "packageManager": "pnpm@10.24.0",
   "pnpm": {
-    "neverBuiltDependencies": []
+    "neverBuiltDependencies": [],
+    "overrides": {
+      "vite": "npm:@voidzero-dev/vite-plus-core@latest",
+      "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
+    }
   },
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
-    "serve": "vite preview",
+    "dev": "vp dev",
+    "build": "vp build",
+    "serve": "vp preview",
     "generate-pwa-assets": "pwa-assets-generator",
     "biome:check": "biome check --no-errors-on-unmatched --error-on-warnings",
     "biome:fix": "pnpm biome:check --write",
     "biome:ci": "biome ci",
     "turbo": "pnpm dlx turbo@2.6.1",
     "type:check": "tsc",
-    "test": "vitest run",
-    "test:ui": "vitest --ui --coverage",
-    "test:coverage": "vitest --coverage run",
+    "test": "vp test run",
+    "test:ui": "vp test --ui --coverage",
+    "test:coverage": "vp test --coverage run",
     "check:turbo": "pnpm turbo biome:check type:check test",
     "knip": "knip",
     "up-interactive": "pnpm up -i",
     "up-latest": "pnpm up-interactive -L",
     "release": "cross-env HUSKY=0 commit-and-tag-version",
     "push-release": "git push --follow-tags origin main",
-    "prepare": "husky"
+    "prepare": "vp config"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.30.0",
@@ -52,25 +56,27 @@
     "@commitlint/cli": "^20.1.0",
     "@commitlint/config-conventional": "^20.0.0",
     "@commitlint/types": "^20.0.0",
+    "@rolldown/plugin-babel": "^0.2.1",
     "@tanstack/devtools-vite": "^0.3.11",
     "@tanstack/router-plugin": "^1.139.12",
     "@types/node": "^24.10.1",
     "@types/react": "19.2.2",
     "@types/react-dom": "^19.2.3",
     "@vite-pwa/assets-generator": "^1.0.2",
+    "@vitejs/plugin-react": "^6.0.1",
     "@vitest/coverage-v8": "^4.0.14",
     "@vitest/ui": "^4.0.14",
+    "babel-plugin-react-compiler": "^1.0.0",
     "commit-and-tag-version": "^12.6.0",
     "cross-env": "^10.1.0",
-    "husky": "^9.1.7",
     "knip": "^5.70.2",
-    "lint-staged": "^16.2.7",
     "rollup-plugin-visualizer": "^6.0.5",
     "typescript": "5.9.3",
-    "vite": "npm:rolldown-vite@7.1.20",
+    "vite": "npm:@voidzero-dev/vite-plus-core@latest",
     "vite-plugin-checker": "^0.11.0",
     "vite-plugin-pwa": "^1.2.0",
+    "vite-plus": "latest",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^4.0.14"
+    "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
   }
 }

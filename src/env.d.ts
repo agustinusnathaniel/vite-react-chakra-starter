@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/consistent-type-definitions */
-/// <reference types="vite/client" />
+/// <reference types="vite-plus/client" />
 
 // biome-ignore lint/complexity/noBannedTypes: -
 type ImportMetaEnv = {};
