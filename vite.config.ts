@@ -36,25 +36,21 @@ export default defineConfig(({ mode }) => {
   return {
     lint: { options: { typeAware: true, typeCheck: true } },
     staged: {
-      'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}': [
-        'biome check --write --no-errors-on-unmatched --error-on-warnings',
-      ],
-      '*.{ts,js,json,md}': [
-        'biome check --write --no-errors-on-unmatched --error-on-warnings',
-      ],
+      'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}': ['ultracite fix'],
+      '*.{ts,js,json,md}': ['ultracite fix'],
     },
     plugins: [
       tanstackDevtools(),
       tanstackRouter({ autoCodeSplitting: true }),
       react(),
       babel({ presets: [reactCompilerPreset()] }),
-      ...(!isCheckDisabled
-        ? [
+      ...(isCheckDisabled
+        ? []
+        : [
             checker({
               typescript: true,
             }),
-          ]
-        : []),
+          ]),
       visualizer({ template: 'sunburst' }) as unknown as PluginOption,
       VitePWA(pwaOptions),
     ],

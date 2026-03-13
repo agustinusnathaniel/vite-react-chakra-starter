@@ -5,12 +5,12 @@ import { ColorModeButton } from '@/lib/components/ui/color-mode';
 export const Header = () => {
   return (
     <Flex
-      as="header"
-      width="full"
       align="center"
       alignSelf="flex-start"
-      justifyContent="center"
+      as="header"
       gridGap={2}
+      justifyContent="center"
+      width="full"
     >
       <Box marginLeft="auto">
         <ColorModeButton />

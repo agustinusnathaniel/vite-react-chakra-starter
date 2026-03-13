@@ -2,10 +2,20 @@
   "mcpServers": {
     "vite-plus": {
       "command": "npx",
-      "args": [
-        "vp",
-        "mcp"
-      ]
+      "args": ["vp", "mcp"]
     }
+  },
+  "hooks": {
+    "PostToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "pnpm fix --skip=correctness/noUnusedImports"
+          }
+        ]
+      }
+    ]
   }
 }

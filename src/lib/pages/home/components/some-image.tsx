@@ -4,29 +4,29 @@ const ICON_SIZE = 22;
 
 export const SomeImage = () => {
   return (
-    <Flex marginY={4} justifyContent="center" alignItems="center" gridGap={2}>
+    <Flex alignItems="center" gridGap={2} justifyContent="center" marginY={4}>
       <Image
+        height={ICON_SIZE}
         src="/assets/vite-logo.svg"
         title="vite"
-        height={ICON_SIZE}
         width={ICON_SIZE}
       />
       <Image
+        height={ICON_SIZE}
         src="/assets/react-icon.svg"
         title="react"
-        height={ICON_SIZE}
         width={ICON_SIZE}
       />
       <Image
+        height={ICON_SIZE}
         src="/assets/chakra-ui-logomark-colored.svg"
         title="Chakra UI"
-        height={ICON_SIZE}
         width={ICON_SIZE}
       />
       <Image
+        height={ICON_SIZE}
         src="/assets/ts-logo-512.svg"
         title="TypeScript"
-        height={ICON_SIZE}
         width={ICON_SIZE}
       />
     </Flex>

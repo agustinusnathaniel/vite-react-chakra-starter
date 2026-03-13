@@ -18,13 +18,13 @@ const Page404 = () => {
     <Grid gap={4} textAlign="center">
       <Heading>Page not Found</Heading>
 
-      <Box maxWidth={[280, 400]} marginX="auto">
-        <Image width={400} src="/assets/404 Error-rafiki.svg" />
+      <Box marginX="auto" maxWidth={[280, 400]}>
+        <Image src="/assets/404 Error-rafiki.svg" width={400} />
         <Link
           fontSize="xs"
           href="https://stories.freepik.com/web"
-          target="_blank"
           rel="noopener noreferrer"
+          target="_blank"
         >
           Illustration by Freepik Stories
         </Link>

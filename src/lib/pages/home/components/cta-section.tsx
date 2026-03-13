@@ -8,45 +8,45 @@ const repoLink = `https://github.com/agustinusnathaniel/${repoName}`;
 
 export const CTASection = () => (
   <Box textAlign="center">
-    <Flex marginY={4} justifyContent="center" gridGap={2}>
+    <Flex gridGap={2} justifyContent="center" marginY={4}>
       <Button asChild size="sm">
         <Link
           href={`${repoLink}/generate`}
-          target="_blank"
           rel="noopener noreferrer"
+          target="_blank"
         >
           Use This Template
         </Link>
       </Button>
       <Button asChild size="sm" variant="outline">
-        <Link href={repoLink} target="_blank" rel="noopener noreferrer">
+        <Link href={repoLink} rel="noopener noreferrer" target="_blank">
           <AiFillGithub /> Open in Github
         </Link>
       </Button>
     </Flex>
-    <Flex marginY={4} justifyContent="center" gridGap={2}>
+    <Flex gridGap={2} justifyContent="center" marginY={4}>
       <Link
         aria-label="Deploy to Vercel"
-        target="_blank"
-        rel="noopener noreferrer"
         href={`https://vercel.com/import/git?s=${repoLink}`}
+        rel="noopener noreferrer"
+        target="_blank"
       >
         <Image
-          src="https://vercel.com/button"
-          height="32px"
           alt="Vercel deploy button"
+          height="32px"
+          src="https://vercel.com/button"
         />
       </Link>
       <Link
         aria-label="Deploy to Netlify"
-        target="_blank"
-        rel="noopener noreferrer"
         href={`https://app.netlify.com/start/deploy?repository=${repoLink}`}
+        rel="noopener noreferrer"
+        target="_blank"
       >
         <Image
-          src="https://www.netlify.com/img/deploy/button.svg"
           alt="Netlify deploy button"
           height="32px"
+          src="https://www.netlify.com/img/deploy/button.svg"
         />
       </Link>
     </Flex>
