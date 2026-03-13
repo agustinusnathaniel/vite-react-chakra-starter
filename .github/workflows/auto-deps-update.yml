@@ -1,0 +1,47 @@
+name: Auto Dependency Update
+
+on:
+  workflow_dispatch:
+
+jobs:
+  update-deps:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - uses: pnpm/action-setup@v2
+        with:
+          version: latest
+
+      - name: Update dependencies
+        run: |
+          pnpm install
+          pnpm update
+          pnpm dedupe
+          pnpm ultracite:fix
+
+      - name: Run checks
+        run: pnpm check:turbo
+
+      - name: Create PR
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore(deps): auto update dependencies"
+          title: "chore(deps): auto update dependencies"
+          body: |
+            Automated dependency update by GitHub Actions.
+
+            - All dependencies updated to latest
+            - Checks passed: pnpm check:turbo
+          branch: chore/auto-deps-update
+          delete-branch: true
+          labels: dependencies
