@@ -10,20 +10,8 @@
     },
     "vite-plus": {
       "command": "npx",
-      "args": ["vp", "mcp"]
+      "args": ["vp", "mcp"],
+      "type": "stdio"
     }
-  },
-  "hooks": {
-    "PostToolUse": [
-      {
-        "matcher": "Write|Edit",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "pnpm fix --skip=correctness/noUnusedImports"
-          }
-        ]
-      }
-    ]
   }
 }

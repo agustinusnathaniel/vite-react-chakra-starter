@@ -1,0 +1,19 @@
+{
+  "mcp": {
+    "chakra-ui": {
+      "type": "local",
+      "command": ["npx", "-y", "@chakra-ui/react-mcp"]
+    },
+    "ultracite": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-remote", "https://docs.ultracite.ai/mcp"],
+      "enabled": true
+    },
+    "vite-plus": {
+      "command": ["npx", "vp", "mcp"],
+      "type": "local",
+      "enabled": true
+    }
+  },
+  "$schema": "https://opencode.ai/config.json"
+}
