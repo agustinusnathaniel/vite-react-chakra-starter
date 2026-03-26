@@ -14,8 +14,6 @@ yarn-error.log*
 # Turbo
 .turbo
 
-.vscode/settings.json
-
 stats.*
 
 # Test
