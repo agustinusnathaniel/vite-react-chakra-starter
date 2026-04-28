@@ -1,9 +1,12 @@
-/* eslint-disable @typescript-eslint/consistent-type-definitions */
 /// <reference types="vite-plus/client" />
 
-// biome-ignore lint/complexity/noBannedTypes: -
-type ImportMetaEnv = {};
+type ImportMetaEnvAugmented =
+  import('@julr/vite-plugin-validate-env').ImportMetaEnvAugmented<
+    typeof import('../env').default
+  >;
 
-interface ImportMeta {
-  readonly env: ImportMetaEnv;
+interface ViteTypeOptions {
+  strictImportMetaEnv: unknown;
 }
+
+interface ImportMetaEnv extends ImportMetaEnvAugmented {}
