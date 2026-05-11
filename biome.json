@@ -21,7 +21,9 @@
       "!**/*.css",
       "!*.d.ts",
       "!stats.html",
-      "!test-results/*.json"
+      "!test-results/*.json",
+      "!.agents",
+      "!.claude"
     ]
   },
   "formatter": {
