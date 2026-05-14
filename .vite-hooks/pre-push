@@ -1,1 +1,1 @@
-pnpm check:turbo
+pnpm check:turbo && bash scripts/dev-smoke.sh
