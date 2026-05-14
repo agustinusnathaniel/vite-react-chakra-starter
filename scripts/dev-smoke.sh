@@ -44,9 +44,10 @@ if ! kill -0 "$pid" 2>/dev/null; then
   exit 1
 fi
 
-if grep -qiE '(error|Error|ERR|MISSING_EXPORT|Build failed|optimization failed|uncaught|unhandled|ENOSPC)' "$logfile" 2>/dev/null; then
+# Real errors (not React dev warnings via console.error)
+if grep -qE '(Error:|Error during|MISSING_EXPORT|Build failed|optimization failed|uncaught|unhandled|ENOSPC|error: script "dev" exited)' "$logfile" 2>/dev/null; then
   echo "FAIL: errors in dev server output"
-  grep -iE '(error|Error|ERR|MISSING_EXPORT|Build failed|optimization failed|uncaught|unhandled|ENOSPC)' "$logfile" | head -10 | sed 's/^/  /'
+  grep -E '(Error:|Error during|MISSING_EXPORT|Build failed|optimization failed|uncaught|unhandled|ENOSPC|error: script "dev" exited)' "$logfile" | head -10 | sed 's/^/  /'
   kill "$pid" 2>/dev/null || true
   rm -f "$logfile"
   exit 1
