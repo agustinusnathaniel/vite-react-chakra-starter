@@ -6,8 +6,8 @@ cd "$ROOT"
 
 port=5173
 dev_script=$(node -e "console.log(require('./package.json').scripts.dev||'')")
-if echo "$dev_script" | grep -q -- "--port"; then
-  port=$(echo "$dev_script" | grep -oP '--port \K\d+')
+if [[ "$dev_script" =~ --port\ ([0-9]+) ]]; then
+  port="${BASH_REMATCH[1]}"
 fi
 
 logfile=$(mktemp)
