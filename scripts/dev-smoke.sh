@@ -4,55 +4,66 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 cd "$ROOT"
 
-# Kill any prior dev servers to avoid port conflicts
-pkill -f "pnpm.*run dev" 2>/dev/null || true
-sleep 1
+readonly LOGFILE=$(mktemp)
+readonly POLL_ATTEMPTS=30
+readonly POLL_INTERVAL=0.5
+readonly POST_START_WAIT=2
 
-logfile=$(mktemp)
-pnpm run dev > "$logfile" 2>&1 &
-pid=$!
+cleanup() {
+  kill "$DEV_PID" 2>/dev/null || true
+  rm -f "$LOGFILE"
+}
+trap cleanup EXIT
+
+pkill -f "pnpm.*(run|dlx).*dev" 2>/dev/null || true
+
+# --- Start dev server in background ---
+pnpm run dev --no-open > "$LOGFILE" 2>&1 &
+DEV_PID=$!
+
+# --- Poll for server readiness ---
+detect_port() {
+  grep -o 'http://localhost:[0-9]*' "$LOGFILE" 2>/dev/null |
+    head -1 |
+    grep -o '[0-9]*$'
+}
 
 server_up=false
-port=""
-for i in $(seq 1 60); do
-  if ! kill -0 "$pid" 2>/dev/null; then break; fi
-  # Detect port from server output (handles auto-increment when port is in use)
-  port=$(awk -F'[/ ]' '/Local:/ {for(i=1;i<=NF;i++) if($i ~ /^localhost:[0-9]+$/) {split($i,a,":"); print a[2]; exit}}' "$logfile" 2>/dev/null)
+for ((i = 0; i < POLL_ATTEMPTS; i++)); do
+  if ! kill -0 "$DEV_PID" 2>/dev/null; then
+    echo "FAIL: dev server died during startup"
+    head -20 "$LOGFILE" | sed 's/^/  /'
+    exit 1
+  fi
+  port=$(detect_port) || true
   if [ -n "$port" ] && curl -sf "http://localhost:$port" > /dev/null 2>&1; then
     server_up=true
     break
   fi
-  sleep 0.5
+  sleep "$POLL_INTERVAL"
 done
 
 if [ "$server_up" = false ]; then
-  echo "FAIL: dev server failed to start"
-  kill "$pid" 2>/dev/null || true
-  sed 's/^/  /' "$logfile"
-  rm -f "$logfile"
+  echo "FAIL: dev server failed to start (timeout)"
+  head -20 "$LOGFILE" | sed 's/^/  /'
   exit 1
 fi
 
-# Let it run 5s more to surface late errors (HMR, deps)
-sleep 5
+# --- Wait for late HMR / dependency errors ---
+sleep "$POST_START_WAIT"
 
-if ! kill -0 "$pid" 2>/dev/null; then
+if ! kill -0 "$DEV_PID" 2>/dev/null; then
   echo "FAIL: dev server started but crashed"
-  sed 's/^/  /' "$logfile"
-  kill "$pid" 2>/dev/null || true
-  rm -f "$logfile"
+  head -20 "$LOGFILE" | sed 's/^/  /'
   exit 1
 fi
 
-# Real errors (not React dev warnings via console.error)
-if grep -qE '(Error:|Error during|MISSING_EXPORT|Build failed|optimization failed|uncaught|unhandled|ENOSPC|error: script "dev" exited)' "$logfile" 2>/dev/null; then
+# --- Check for real errors (not React dev warnings sent to console.error) ---
+error_pat='(Error:|Error during|MISSING_EXPORT|Build failed|optimization failed|uncaught|unhandled|ENOSPC|error: script "dev" exited)'
+if grep -qE "$error_pat" "$LOGFILE" 2>/dev/null; then
   echo "FAIL: errors in dev server output"
-  grep -E '(Error:|Error during|MISSING_EXPORT|Build failed|optimization failed|uncaught|unhandled|ENOSPC|error: script "dev" exited)' "$logfile" | head -10 | sed 's/^/  /'
-  kill "$pid" 2>/dev/null || true
-  rm -f "$logfile"
+  grep -E "$error_pat" "$LOGFILE" | head -10 | sed 's/^/  /'
   exit 1
 fi
 
-kill "$pid" 2>/dev/null || true
-rm -f "$logfile"
 echo "PASS"
