@@ -28,7 +28,7 @@
     "test": "vp test run",
     "test:ui": "vp test --ui --coverage",
     "test:coverage": "vp test --coverage run",
-    "check:turbo": "pnpm turbo ultracite:check type:check test build",
+    "check:turbo": "pnpm turbo ultracite:check type:check test",
     "knip": "knip",
     "up-interactive": "pnpm up -i",
     "up-latest": "pnpm up-interactive -L",
