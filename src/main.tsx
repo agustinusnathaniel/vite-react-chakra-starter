@@ -22,7 +22,6 @@ const router = createRouter({
   defaultPreload: 'intent',
   scrollRestoration: true,
   defaultStructuralSharing: true,
-  defaultPreloadStaleTime: 0,
   defaultPendingComponent: () => (
     <div className="mx-auto">
       <p>Loading...</p>
