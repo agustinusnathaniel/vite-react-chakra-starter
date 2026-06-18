@@ -38,7 +38,16 @@ export default defineConfig(({ mode }) => {
   const isReactCompilerEnabled = env.ENABLE_PLUGIN_REACT_COMPILER === 'true';
 
   return {
-    lint: { options: { typeAware: true, typeCheck: true } },
+    lint: {
+      options: { typeAware: true, typeCheck: true },
+      // disable vp check
+      ignorePatterns: ['**/*'],
+    },
+    fmt: {
+      singleQuote: true,
+      // disable vp fmt
+      ignorePatterns: ['**/*'],
+    },
     staged: {
       'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}': ['ultracite fix'],
       '*.{ts,js,json,md}': ['ultracite fix'],
