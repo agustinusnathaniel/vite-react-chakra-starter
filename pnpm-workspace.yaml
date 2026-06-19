@@ -4,5 +4,16 @@ allowBuilds:
   sharp: true
 
 overrides:
-  "vite": "npm:@voidzero-dev/vite-plus-core@latest"
-  "vitest": "npm:@voidzero-dev/vite-plus-test@latest"
+  "vite": 'catalog:'
+  "vitest": 'catalog:'
+catalog:
+  vite: npm:@voidzero-dev/vite-plus-core@latest
+  vitest: 4.1.9
+  vite-plus: latest
+peerDependencyRules:
+  allowAny:
+    - vite
+    - vitest
+  allowedVersions:
+    vite: '*'
+    vitest: '*'
