@@ -8,7 +8,7 @@ import checker from 'vite-plugin-checker';
 import type { VitePWAOptions } from 'vite-plugin-pwa';
 import { VitePWA } from 'vite-plugin-pwa';
 import type { PluginOption } from 'vite-plus';
-import { defineConfig, loadEnv } from 'vite-plus';
+import { defineConfig, lazyPlugins, loadEnv } from 'vite-plus';
 
 const pwaOptions: Partial<VitePWAOptions> = {
   // TODO: enable if you want to enable PWA service worker
@@ -52,7 +52,7 @@ export default defineConfig(({ mode }) => {
       'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}': ['ultracite fix'],
       '*.{ts,js,json,md}': ['ultracite fix'],
     },
-    plugins: [
+    plugins: lazyPlugins(() => [
       tanstackDevtools(),
       ValidateEnv(),
       tanstackRouter({ autoCodeSplitting: true }),
@@ -73,7 +73,7 @@ export default defineConfig(({ mode }) => {
           ]),
       visualizer({ template: 'sunburst' }) as unknown as PluginOption,
       VitePWA(pwaOptions),
-    ],
+    ]),
     server: {
       port: 3000,
       open: true,
