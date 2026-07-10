@@ -74,10 +74,6 @@ export default defineConfig(({ mode }) => {
       visualizer({ template: 'sunburst' }) as unknown as PluginOption,
       VitePWA(pwaOptions),
     ]),
-    server: {
-      port: 3000,
-      open: true,
-    },
     resolve: {
       tsconfigPaths: true,
     },
