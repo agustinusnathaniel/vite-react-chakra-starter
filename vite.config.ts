@@ -13,22 +13,22 @@ import { defineConfig, lazyPlugins, loadEnv } from 'vite-plus';
 const pwaOptions: Partial<VitePWAOptions> = {
   // TODO: enable if you want to enable PWA service worker
   disable: true,
-  registerType: 'autoUpdate',
   manifest: {
-    short_name: 'vite-react-chakra-starter',
-    name: 'Vite React App Template',
-    lang: 'en',
-    start_url: '/',
     background_color: '#FFFFFF',
-    theme_color: '#FFFFFF',
     dir: 'ltr',
     display: 'standalone',
+    lang: 'en',
+    name: 'Vite React App Template',
     prefer_related_applications: false,
+    short_name: 'vite-react-chakra-starter',
+    start_url: '/',
+    theme_color: '#FFFFFF',
   },
   pwaAssets: {
-    disabled: false,
     config: true,
+    disabled: false,
   },
+  registerType: 'autoUpdate',
 };
 
 // https://vitejs.dev/config/
@@ -38,19 +38,15 @@ export default defineConfig(({ mode }) => {
   const isReactCompilerEnabled = env.ENABLE_PLUGIN_REACT_COMPILER === 'true';
 
   return {
-    lint: {
-      options: { typeAware: true, typeCheck: true },
-      // disable vp check
-      ignorePatterns: ['**/*'],
-    },
     fmt: {
-      singleQuote: true,
       // disable vp fmt
       ignorePatterns: ['**/*'],
+      singleQuote: true,
     },
-    staged: {
-      'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}': ['ultracite fix'],
-      '*.{ts,js,json,md}': ['ultracite fix'],
+    lint: {
+      // disable vp check
+      ignorePatterns: ['**/*'],
+      options: { typeAware: true, typeCheck: true },
     },
     plugins: lazyPlugins(() => [
       tanstackDevtools(),
@@ -76,6 +72,10 @@ export default defineConfig(({ mode }) => {
     ]),
     resolve: {
       tsconfigPaths: true,
+    },
+    staged: {
+      '*.{ts,js,json,md}': ['ultracite fix'],
+      'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}': ['ultracite fix'],
     },
     test: {
       coverage: {

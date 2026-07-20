@@ -11,103 +11,6 @@ const ogImgUrl =
   'https://og.sznm.dev/api/generate?heading=vite-react-chakra-starter&text=React+vite+template+with+Chakra+UI+and+TypeScript+setup.&template=color';
 
 export const Route = createRootRoute({
-  head: () => ({
-    meta: [
-      {
-        title,
-      },
-      {
-        name: 'description',
-        content: description,
-      },
-      {
-        name: 'viewport',
-        content: 'width=device-width, initial-scale=1.0',
-      },
-      {
-        name: 'application-name',
-        content: title,
-      },
-      {
-        name: 'apple-mobile-web-app-capable',
-        content: 'yes',
-      },
-      {
-        name: 'apple-mobile-web-app-status-bar-style',
-        content: 'default',
-      },
-      {
-        name: 'apple-mobile-web-app-title',
-        content: title,
-      },
-      {
-        name: 'format-detection',
-        content: 'telephone=no',
-      },
-      {
-        name: 'mobile-web-app-capable',
-        content: 'yes',
-      },
-      {
-        name: 'theme-color',
-        content: '#000000',
-      },
-      {
-        name: 'og:type',
-        content: 'website',
-      },
-      {
-        name: 'og:url',
-        content: url,
-      },
-      {
-        name: 'og:title',
-        content: title,
-      },
-      {
-        name: 'og:description',
-        content: description,
-      },
-      {
-        name: 'og:image',
-        content: ogImgUrl,
-      },
-      {
-        name: 'twitter:card',
-        content: 'summary_large_image',
-      },
-      {
-        name: 'twitter:url',
-        content: url,
-      },
-      {
-        name: 'twitter:title',
-        content: title,
-      },
-      {
-        name: 'twitter:description',
-        content: description,
-      },
-      {
-        name: 'twitter:image',
-        content: ogImgUrl,
-      },
-    ],
-    links: [
-      {
-        rel: 'icon',
-        href: '/favicon.ico',
-      },
-      {
-        rel: 'apple-touch-icon',
-        href: '/apple-touch-icon-180x180.png',
-      },
-      {
-        rel: 'manifest',
-        href: '/manifest.webmanifest',
-      },
-    ],
-  }),
   component: () => (
     <>
       <HeadContent />
@@ -122,4 +25,101 @@ export const Route = createRootRoute({
       ) : null}
     </>
   ),
+  head: () => ({
+    links: [
+      {
+        href: '/favicon.ico',
+        rel: 'icon',
+      },
+      {
+        href: '/apple-touch-icon-180x180.png',
+        rel: 'apple-touch-icon',
+      },
+      {
+        href: '/manifest.webmanifest',
+        rel: 'manifest',
+      },
+    ],
+    meta: [
+      {
+        title,
+      },
+      {
+        content: description,
+        name: 'description',
+      },
+      {
+        content: 'width=device-width, initial-scale=1.0',
+        name: 'viewport',
+      },
+      {
+        content: title,
+        name: 'application-name',
+      },
+      {
+        content: 'yes',
+        name: 'apple-mobile-web-app-capable',
+      },
+      {
+        content: 'default',
+        name: 'apple-mobile-web-app-status-bar-style',
+      },
+      {
+        content: title,
+        name: 'apple-mobile-web-app-title',
+      },
+      {
+        content: 'telephone=no',
+        name: 'format-detection',
+      },
+      {
+        content: 'yes',
+        name: 'mobile-web-app-capable',
+      },
+      {
+        content: '#000000',
+        name: 'theme-color',
+      },
+      {
+        content: 'website',
+        name: 'og:type',
+      },
+      {
+        content: url,
+        name: 'og:url',
+      },
+      {
+        content: title,
+        name: 'og:title',
+      },
+      {
+        content: description,
+        name: 'og:description',
+      },
+      {
+        content: ogImgUrl,
+        name: 'og:image',
+      },
+      {
+        content: 'summary_large_image',
+        name: 'twitter:card',
+      },
+      {
+        content: url,
+        name: 'twitter:url',
+      },
+      {
+        content: title,
+        name: 'twitter:title',
+      },
+      {
+        content: description,
+        name: 'twitter:description',
+      },
+      {
+        content: ogImgUrl,
+        name: 'twitter:image',
+      },
+    ],
+  }),
 });

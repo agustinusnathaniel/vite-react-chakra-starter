@@ -6,11 +6,12 @@
     "allowJs": false,
     "skipLibCheck": true,
     "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
     "strict": true,
     "strictNullChecks": true,
     "forceConsistentCasingInFileNames": true,
     "module": "ESNext",
-    "moduleResolution": "Bundler",
+    "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
     "resolveJsonModule": true,
     "isolatedModules": true,
@@ -21,10 +22,14 @@
       "@/*": ["./src/*"]
     },
 
+    /* Types */
+    "types": ["vite-plus/client"],
+
     /* Linting */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
+    // Keep false: @fontsource-variable/plus-jakarta-sans is a CSS side-effect import
     "noUncheckedSideEffectImports": false
   },
   "include": ["src"],

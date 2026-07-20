@@ -19,6 +19,7 @@
       "!turbo",
       "!src/lib/components/ui/**/*",
       "!**/*.css",
+      "!**/*.svg",
       "!*.d.ts",
       "!stats.html",
       "!test-results/*.json",
@@ -33,7 +34,7 @@
   "linter": {
     "enabled": true,
     "rules": {
-      "recommended": true,
+      "preset": "recommended",
       "correctness": {
         "useImageSize": "off"
       },
