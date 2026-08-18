@@ -15,7 +15,7 @@ This template provides a production-ready starting point for React applications 
 
 ### File-Based Routing
 
-Routes are defined as files in `src/routes/`. The TanStack Router plugin generates a type-safe route tree automatically.
+Routes are defined as files in `src/routes/`. The TanStack Start Vite plugin generates a type-safe route tree automatically.
 
 **Invariant**: Route file paths map directly to URL paths (with `__root.tsx` as the root layout).
 
@@ -28,23 +28,22 @@ Routes are defined as files in `src/routes/`. The TanStack Router plugin generat
 
 ```mermaid
 graph TD
-    A[main.tsx Entry] --> B[Provider - Chakra Theme]
-    B --> C[QueryClientProvider]
-    C --> D[RouterProvider]
-    D --> E[__root.tsx]
-    E --> F[Layout Component]
-    F --> G[Header]
-    F --> H[Page Content via Outlet]
-    F --> I[Footer]
-    H --> J[Route-Specific Page Component]
-    J --> K[Page Sub-Components]
-    K --> L[UI Components]
-    L --> M[Chakra UI Primitives]
+    A[src/router.tsx - getRouter] --> B[Start Document Shell - __root.tsx]
+    B --> C[Provider - Chakra Theme]
+    C --> D[QueryClientProvider]
+    D --> E[Layout Component]
+    E --> F[Header]
+    E --> G[Page Content via Outlet]
+    E --> H[Footer]
+    G --> I[Route-Specific Page Component]
+    I --> J[Page Sub-Components]
+    J --> K[UI Components]
+    K --> L[Chakra UI Primitives]
     
     style A fill:#e1f5ff
+    style B fill:#fff4e1
     style E fill:#fff4e1
-    style F fill:#fff4e1
-    style J fill:#e8f5e9
+    style I fill:#e8f5e9
 ```
 
 **Invariant**: All routes render through `__root.tsx`, which provides the Layout wrapper.
@@ -83,17 +82,16 @@ TanStack Query client is instantiated once and provided at the root level.
 
 ### Route Loading
 
-1. Routes are code-split automatically by TanStack Router plugin
+1. Routes are code-split automatically by the TanStack Start plugin
 2. Route components load on-demand when navigated to
 3. Preloading occurs on `intent` (hover/focus) by default
 4. Scroll restoration is enabled by default
 
 ### Development Server
 
-1. Vite dev server runs on port 3000
-2. Browser opens automatically on start
-3. Hot module replacement (HMR) updates components without full page reload
-4. Type checking runs in development (disabled in production builds)
+1. Vite dev server runs on `http://localhost:5173` (Vite default)
+2. Hot module replacement (HMR) updates components without full page reload
+3. Type checking runs in development (disabled in production builds)
 
 ### Build Process
 
@@ -211,7 +209,7 @@ Color mode uses `ClientOnly` wrapper for the toggle button to avoid hydration mi
 
 ### Route Preloading
 
-Routes preload on `intent` (hover/focus). This can cause unexpected network requests. To disable, modify `defaultPreload` in `main.tsx` router configuration.
+Routes preload on `intent` (hover/focus). This can cause unexpected network requests. To disable, modify `defaultPreload` in `src/router.tsx` router configuration.
 
 ### Build Output Structure
 
@@ -267,7 +265,7 @@ sequenceDiagram
 
 ## Configuration Assumptions
 
-1. **Port**: Dev server uses port 3000 (configurable in `vite.config.ts`)
+1. **Port**: Dev server uses Vite's default port 5173 (configurable via `server.port` in `vite.config.ts`)
 2. **Base Path**: Assumes root deployment (`/`). For subpaths, configure `base` in Vite config and router.
 3. **Environment**: No environment variable setup by default (can be added via Vite's `import.meta.env`)
 

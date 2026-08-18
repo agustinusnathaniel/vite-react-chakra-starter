@@ -45,43 +45,44 @@ This template solves the problem of quickly bootstrapping a new React applicatio
 ```mermaid
 graph TB
     subgraph "Entry Point"
-        A[index.html] --> B[main.tsx]
+        A[src/router.tsx - getRouter] --> B[Start Client Hydration]
     end
     
-    subgraph "Application Bootstrap"
-        B --> C[Provider - Chakra UI Theme]
-        C --> D[QueryClientProvider]
-        D --> E[RouterProvider]
+    subgraph "Document Shell - __root.tsx"
+        B --> C[html / head / body]
+        C --> D[HeadContent - meta and links]
+        C --> E[Provider - Chakra UI Theme]
+        E --> F[QueryClientProvider]
     end
     
     subgraph "Routing Layer"
-        E --> F[__root.tsx - Layout Wrapper]
-        F --> G[Route Tree - Auto-generated]
-        G --> H[Page Components]
+        F --> G[Outlet - Route Content]
+        G --> H[Route Tree - Auto-generated]
+        H --> I[Page Components]
     end
     
     subgraph "Component Architecture"
-        F --> I[Layout Component]
-        I --> J[Header]
-        I --> K[Footer]
-        I --> L[Page Content]
-        L --> M[UI Components]
-        M --> N[Chakra UI Primitives]
+        E --> J[Layout Component]
+        J --> K[Header]
+        J --> L[Footer]
+        J --> M[Page Content]
+        M --> N[UI Components]
+        N --> O[Chakra UI Primitives]
     end
     
     subgraph "Supporting Systems"
-        O[Theme System] --> C
-        P[Color Mode Provider] --> C
-        Q[Query Client] --> D
-        R[Route Generation] --> G
+        P[Theme System] --> E
+        Q[Color Mode Provider] --> E
+        R[Query Client] --> F
+        S[Route Generation] --> H
     end
     
     style A fill:#e1f5ff
     style B fill:#e1f5ff
-    style F fill:#fff4e1
-    style I fill:#fff4e1
-    style O fill:#e8f5e9
+    style C fill:#fff4e1
+    style J fill:#fff4e1
     style P fill:#e8f5e9
+    style Q fill:#e8f5e9
 ```
 
 ## Repository Structure
@@ -89,17 +90,17 @@ graph TB
 ```
 vite-react-chakra-starter/
 ├── src/
-│   ├── main.tsx                 # Application entry point
-│   ├── routes/                  # TanStack Router route definitions
-│   │   ├── __root.tsx           # Root layout route with meta tags
-│   │   └── index.tsx            # Home page route
-│   ├── routeTree.gen.ts         # Auto-generated route tree (DO NOT EDIT)
-│   └── lib/                     # Application code
-│       ├── components/          # Reusable UI components
-│       │   └── ui/              # Base UI components (button, color-mode, provider)
-│       ├── layout/              # Layout components
-│       │   ├── index.tsx        # Main layout wrapper
-│       │   └── components/      # Header, Footer, Meta
+│   ├── router.tsx                 # Application entry point (createRouter/getRouter)
+│   ├── routes/                    # TanStack Router route definitions
+│   │   ├── __root.tsx             # Document shell (html/head/body) with meta tags
+│   │   └── index.tsx              # Home page route
+│   ├── routeTree.gen.ts           # Auto-generated route tree (DO NOT EDIT)
+│   └── lib/                       # Application code
+│       ├── components/            # Reusable UI components
+│       │   └── ui/                # Base UI components (button, color-mode, provider)
+│       ├── layout/                # Layout components
+│       │   ├── index.tsx          # Main layout wrapper
+│       │   └── components/        # Header, Footer
 │       ├── pages/               # Page-level components
 │       │   ├── home/            # Home page and its components
 │       │   └── 404/             # 404 error page
@@ -139,7 +140,7 @@ pnpm install
 pnpm dev
 ```
 
-The development server runs on `http://localhost:3000` and opens automatically.
+The development server runs on `http://localhost:5173` (Vite's default).
 
 ## Development Workflows
 
@@ -202,7 +203,7 @@ pnpm build
 
 ### Development Tools
 
-- **@tanstack/router-plugin**: Vite plugin that generates route trees and enables code splitting.
+- **@tanstack/react-start**: React framework with file-based routing, a document shell, and static prerendering. Its Vite plugin (`@tanstack/react-start/plugin/vite`) generates the route tree and prerenders routes to `dist/client`.
 - **@tanstack/devtools-vite**: Development tools for debugging Router and Query.
 - **vite-plugin-checker**: TypeScript type checking during development (disabled in production).
 - **vite-tsconfig-paths**: Enables TypeScript path aliases (`@/*`) in Vite.
@@ -238,17 +239,19 @@ Example: `import { Button } from '@/lib/components/ui/button'`
 - **Command**: `pnpm build`
 - **Output Directory**: `dist/client`
 
+The build is a fully static TanStack Start prerender (no server functions). Hosts serve files directly from `dist/client`; unknown paths return the static `404.html`, so no SPA rewrites are required.
+
 ### Platform-Specific Configuration
 
-- **Vercel**: `vercel.json` - React Router preset configuration
-- **Netlify**: `netlify.toml` - React Router framework configuration
-- **Cloudflare Pages**: `wrangler.toml` - Cloudflare Pages configuration
+- **Vercel**: `vercel.json` - static output to `dist/client` with security headers
+- **Netlify**: `netlify.toml` - static output to `dist/client` with security headers
+- **Cloudflare Pages**: `wrangler.toml` - static output to `dist/client`
 - **Nixpacks**: `nixpacks.toml` - Container build configuration
 
 See platform-specific documentation:
-- [Vercel React Router Guide](https://vercel.com/docs/frameworks/react-router#vercel-react-router-preset)
-- [Netlify React Router Guide](https://docs.netlify.com/frameworks/react-router/)
-- [Cloudflare Pages Guide](https://developers.cloudflare.com/pages/)
+- [Vercel Static Deployments](https://vercel.com/docs/static-deployments)
+- [Netlify Deploys](https://docs.netlify.com/site-deploys/overview/)
+- [Cloudflare Pages](https://developers.cloudflare.com/pages/)
 
 ## Common Development Tasks
 
