@@ -1,6 +1,15 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
-  "buildCommand": "turbo run build",
+  "buildCommand": "pnpm build",
+  "outputDirectory": "dist/client",
+  "rewrites": [
+    { "source": "/_build/(.*)", "destination": "/_build/$1" },
+    { "source": "/_serverFn/(.*)", "destination": "/_serverFn/$1" },
+    {
+      "source": "/((?!index|_build|_serverFn|assets|favicon.ico).*)",
+      "destination": "/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",

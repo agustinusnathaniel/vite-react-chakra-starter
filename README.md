@@ -189,7 +189,7 @@ pnpm test:coverage
 # Production build
 pnpm build
 
-# Output directory: build/client
+# Output directory: dist/client
 ```
 
 ## Key Dependencies and Their Roles
@@ -236,17 +236,19 @@ Example: `import { Button } from '@/lib/components/ui/button'`
 ### Build Output
 
 - **Command**: `pnpm build`
-- **Output Directory**: `build/client`
+- **Output Directory**: `dist/client`
 
 ### Platform-Specific Configuration
 
 - **Vercel**: `vercel.json` - React Router preset configuration
 - **Netlify**: `netlify.toml` - React Router framework configuration
+- **Cloudflare Pages**: `wrangler.toml` - Cloudflare Pages configuration
 - **Nixpacks**: `nixpacks.toml` - Container build configuration
 
 See platform-specific documentation:
 - [Vercel React Router Guide](https://vercel.com/docs/frameworks/react-router#vercel-react-router-preset)
 - [Netlify React Router Guide](https://docs.netlify.com/frameworks/react-router/)
+- [Cloudflare Pages Guide](https://developers.cloudflare.com/pages/)
 
 ## Common Development Tasks
 

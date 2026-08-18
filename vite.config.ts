@@ -1,7 +1,7 @@
 import { ValidateEnv } from '@julr/vite-plugin-validate-env';
 import babel from '@rolldown/plugin-babel';
 import { devtools as tanstackDevtools } from '@tanstack/devtools-vite';
-import { tanstackRouter } from '@tanstack/router-plugin/vite';
+import { tanstackStart } from '@tanstack/react-start/plugin/vite';
 import react, { reactCompilerPreset } from '@vitejs/plugin-react';
 import { visualizer } from 'rollup-plugin-visualizer';
 import checker from 'vite-plugin-checker';
@@ -51,7 +51,15 @@ export default defineConfig(({ mode }) => {
     plugins: lazyPlugins(() => [
       tanstackDevtools(),
       ValidateEnv(),
-      tanstackRouter({ autoCodeSplitting: true }),
+      tanstackStart({
+        prerender: {
+          enabled: true,
+          failOnError: true,
+        },
+        spa: {
+          enabled: false,
+        },
+      }),
       react(),
       ...(isReactCompilerEnabled
         ? [

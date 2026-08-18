@@ -1,0 +1,5 @@
+name = "vite-react-chakra-starter"
+pages_build_output_dir = "./dist/client"
+
+[vars]
+  COREPACK_INTEGRITY_KEYS="0"

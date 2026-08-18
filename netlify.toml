@@ -1,10 +1,21 @@
 [[redirects]]
+  from="/_build/*"
+  to="/_build/:splat"
+  status=200
+
+[[redirects]]
+  from="/_serverFn/*"
+  to="/_serverFn/:splat"
+  status=200
+
+[[redirects]]
   from="/*"
   to="/index.html"
   status=200
 
 [build]
   command = 'pnpm build'
+  publish = "dist/client"
 
 [build.environment]
   NODE_VERSION="22"

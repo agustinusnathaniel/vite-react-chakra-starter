@@ -1,8 +1,19 @@
+import { QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { createRootRoute, HeadContent, Outlet } from '@tanstack/react-router';
+import {
+  createRootRoute,
+  HeadContent,
+  Outlet,
+  Scripts,
+} from '@tanstack/react-router';
 import { TanStackRouterDevtools } from '@tanstack/react-router-devtools';
 
+import { Provider } from '@/lib/components/ui/provider';
 import { Layout } from '@/lib/layout';
+import { queryClient } from '@/lib/services/constants';
+
+// fonts
+import '@fontsource-variable/plus-jakarta-sans';
 
 const title = 'Vite React Chakra Starter';
 const description = 'app starter template';
@@ -11,25 +22,16 @@ const ogImgUrl =
   'https://og.sznm.dev/api/generate?heading=vite-react-chakra-starter&text=React+vite+template+with+Chakra+UI+and+TypeScript+setup.&template=color';
 
 export const Route = createRootRoute({
-  component: () => (
-    <>
-      <HeadContent />
-      <Layout>
-        <Outlet />
-      </Layout>
-      {import.meta.env.VITE_ENABLE_TANSTACK_DEVTOOLS ? (
-        <>
-          <TanStackRouterDevtools />
-          <ReactQueryDevtools />
-        </>
-      ) : null}
-    </>
-  ),
+  component: RootComponent,
   head: () => ({
     links: [
       {
         href: '/favicon.ico',
         rel: 'icon',
+      },
+      {
+        href: '/favicon.svg',
+        rel: 'shortcut icon',
       },
       {
         href: '/apple-touch-icon-180x180.png',
@@ -77,7 +79,7 @@ export const Route = createRootRoute({
         name: 'mobile-web-app-capable',
       },
       {
-        content: '#000000',
+        content: '#FFFFFF',
         name: 'theme-color',
       },
       {
@@ -123,3 +125,29 @@ export const Route = createRootRoute({
     ],
   }),
 });
+
+function RootComponent() {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <head>
+        <HeadContent />
+      </head>
+      <body suppressHydrationWarning>
+        <Provider>
+          <QueryClientProvider client={queryClient}>
+            <Layout>
+              <Outlet />
+            </Layout>
+          </QueryClientProvider>
+        </Provider>
+        {import.meta.env.VITE_ENABLE_TANSTACK_DEVTOOLS ? (
+          <>
+            <TanStackRouterDevtools />
+            <ReactQueryDevtools />
+          </>
+        ) : null}
+        <Scripts />
+      </body>
+    </html>
+  );
+}
