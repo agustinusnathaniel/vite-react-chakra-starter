@@ -15,7 +15,7 @@
     },
     "build": {
       "dependsOn": ["type:check"],
-      "outputs": ["build/client/**", "public/**"],
+      "outputs": ["dist/**", "public/**"],
       "env": []
     },
     "test": {
