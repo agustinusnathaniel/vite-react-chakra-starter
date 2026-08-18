@@ -1,0 +1,18 @@
+{
+  "background_color": "#FFFFFF",
+  "dir": "ltr",
+  "display": "standalone",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ],
+  "lang": "en",
+  "name": "Vite React App Template",
+  "prefer_related_applications": false,
+  "short_name": "vite-react-chakra-starter",
+  "start_url": "/",
+  "theme_color": "#FFFFFF"
+}

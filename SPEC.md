@@ -100,13 +100,14 @@ TanStack Query client is instantiated once and provided at the root level.
 1. TypeScript compilation runs before build
 2. Vite bundles application with code splitting
 3. Route-based code splitting is automatic
-4. Output directory: `build/client`
+4. Output directory: `dist/client`
 
 ### Error Handling
 
-1. 404 routes render `Page404` component (defined in `src/lib/pages/404/`)
-2. Route errors are caught by router's error boundary
-3. Query errors are handled by TanStack Query error boundaries
+1. Client-side unmatched routes render the `Page404` component (defined in `src/lib/pages/404/`)
+2. Static deployments serve `public/404.html` with an HTTP 404 for unknown direct requests
+3. Route errors are caught by router's error boundary
+4. Query errors are handled by TanStack Query error boundaries
 
 ## Constraints
 
@@ -214,7 +215,7 @@ Routes preload on `intent` (hover/focus). This can cause unexpected network requ
 
 ### Build Output Structure
 
-Vite outputs to `build/client/` (not `dist/`). This is configured for TanStack Router compatibility with deployment platforms.
+Vite outputs to `dist/client/`, including prerendered route HTML and the static `404.html` document.
 
 ### Path Alias Resolution
 
@@ -261,7 +262,8 @@ sequenceDiagram
 1. **Browser Environment**: Requires modern browser with ES module support
 2. **Node Version**: Node.js ^24.11.x (enforced by `engines` in `package.json`)
 3. **Package Manager**: pnpm 10.24.0 (enforced by `packageManager`)
-4. **Build Output**: Deployed as static files (SPA routing handled by platform)
+4. **Build Output**: Deployed as static files with TanStack Start prerendering
+5. **Unknown Paths**: Handled by the host using the deployed `404.html`; no SPA wildcard rewrite is required
 
 ## Configuration Assumptions
 
