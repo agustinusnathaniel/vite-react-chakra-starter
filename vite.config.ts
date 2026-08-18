@@ -52,11 +52,12 @@ export default defineConfig(({ mode }) => {
       tanstackDevtools(),
       ValidateEnv(),
       tanstackStart({
-        spa: {
+        prerender: {
           enabled: true,
-          prerender: {
-            outputPath: '',
-          },
+          failOnError: true,
+        },
+        spa: {
+          enabled: false,
         },
       }),
       react(),
