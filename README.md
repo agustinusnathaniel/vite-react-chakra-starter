@@ -189,7 +189,7 @@ pnpm test:coverage
 # Production build
 pnpm build
 
-# Output directory: build/client
+# Output directory: dist/client
 ```
 
 ## Key Dependencies and Their Roles
@@ -236,7 +236,7 @@ Example: `import { Button } from '@/lib/components/ui/button'`
 ### Build Output
 
 - **Command**: `pnpm build`
-- **Output Directory**: `build/client`
+- **Output Directory**: `dist/client`
 
 ### Platform-Specific Configuration
 
