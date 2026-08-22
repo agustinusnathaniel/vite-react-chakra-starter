@@ -101,10 +101,10 @@ importers:
         specifier: ^6.1.0
         version: 6.1.0(@rolldown/plugin-babel@0.2.3(@babel/core@7.29.7)(@babel/runtime@7.29.7)(@voidzero-dev/vite-plus-core@0.2.9(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.9.0))(rolldown@1.0.3))(@voidzero-dev/vite-plus-core@0.2.9(@types/node@26.2.0)(esbuild@0.28.2)(jiti@2.7.0)(terser@5.50.0)(tsx@4.21.0)(typescript@6.0.3)(yaml@2.9.0))(babel-plugin-react-compiler@1.0.0)
       '@vitest/coverage-v8':
-        specifier: ^4.1.11
+        specifier: ^4.1.10
         version: 4.1.11(vitest@4.1.11)
       '@vitest/ui':
-        specifier: ^4.1.11
+        specifier: ^4.1.10
         version: 4.1.11(vitest@4.1.11)
       babel-plugin-react-compiler:
         specifier: ^1.0.0
@@ -125,7 +125,7 @@ importers:
         specifier: ^7.1.1
         version: 7.1.1(rolldown@1.0.3)(rollup@2.80.0)
       typescript:
-        specifier: 6.0.3
+        specifier: ^6.0.3
         version: 6.0.3
       ultracite:
         specifier: 7.10.6
