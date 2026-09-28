@@ -16,7 +16,7 @@
     "release": "cross-env HUSKY=0 commit-and-tag-version",
     "serve": "vp preview",
     "test": "vp test run",
-    "test:coverage": "vp test --coverage run",
+    "test:coverage": "vp test --coverage --run",
     "test:ui": "vp test --ui --coverage",
     "turbo": "pnpm dlx turbo@2.6.1",
     "type:check": "tsc",
