@@ -71,14 +71,14 @@
     "vite-tsconfig-paths": "^6.1.1",
     "vitest": "catalog:"
   },
-  "packageManager": "pnpm@11.8.0",
+  "packageManager": "pnpm@12.6.0",
   "engines": {
     "node": "^24.15.x"
   },
   "devEngines": {
     "runtime": {
       "name": "node",
-      "version": "^24.19.0",
+      "version": "24.21.0",
       "onFail": "download"
     }
   }
