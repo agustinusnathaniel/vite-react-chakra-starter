@@ -1,3 +1,10 @@
+# pmOnFail: ignore stops pnpm from recording its own resolved version in
+# pnpm-lock.yaml. Without it the lockfile becomes a two-document YAML file,
+# which silently breaks security scanners (osv-scanner reports zero findings,
+# Syft miscounts, and the GitHub dependency graph reports 0 dependencies).
+# The trade-off is that pnpm stops enforcing the packageManager pin.
+pmOnFail: ignore
+
 allowBuilds:
   "@biomejs/biome": true
   esbuild: true
