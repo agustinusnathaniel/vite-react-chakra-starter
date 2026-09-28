@@ -86,6 +86,11 @@ export default defineConfig(({ mode }) => {
       'src/**/*.{js,jsx,ts,tsx,json,css,scss,md}': ['ultracite fix'],
     },
     test: {
+      // Vitest v4 compatibility: preserve mock call history.
+      // Remove after tests no longer rely on calls from setup or earlier tests.
+      // https://viteplus.dev/guide/vitest-v5#remove-unneeded-compatibility-settings
+      // https://vitest.dev/guide/migration/#clearmocks-is-enabled-by-default
+      clearMocks: false,
       coverage: {
         include: ['src/lib/utils/**/**.{ts,tsx,js,jsx}'],
       },
