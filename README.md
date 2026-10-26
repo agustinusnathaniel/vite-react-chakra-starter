@@ -123,8 +123,8 @@ vite-react-chakra-starter/
 
 ### Prerequisites
 
-- Node.js ^24.11.x
-- pnpm 10.24.0
+- Node.js ^24.15.x
+- pnpm 12.6.0
 
 ### Installation
 
